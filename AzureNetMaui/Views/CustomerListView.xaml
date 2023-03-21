@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AzureNetMaui.Views.CustomerListView"
+             xmlns:vm="clr-namespace:AzureNetMaui.ViewModels"
+             xmlns:model="clr-namespace:AzureNetMaui.Models"
+             x:DataType="vm:CustomerListViewModel"
+             Title="{Binding Title}">
+
+    <Grid
+        Margin="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+        <CollectionView
+            ItemsSource="{Binding Customers}"
+            SelectionMode="Single"
+            BackgroundColor="Transparent">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Customer">
+                    <Grid Padding="10">
+                        <Frame HeightRequest="125" BorderColor="#DDDDDD"
+                               HasShadow="True"
+                               Padding="10"
+                               CornerRadius="10"
+                               IsClippedToBounds="True">
+                            <Grid Padding="0" ColumnDefinitions="125,*">
+                                <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="125"
+                                        Source="{Binding Photo}"
+                                        WidthRequest="125" />
+                                <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Padding="10">
+                                    <Label FontSize="Large" Text="{Binding Name}" />
+                                    <Label FontSize="Medium" Text="{Binding Phone}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Grid.Row="1"
+            Margin="8"
+            Command="{Binding GetCustomersCommand}"
+            Text="Get Customers" />
+
+        <ActivityIndicator
+            Grid.RowSpan="2"
+            HorizontalOptions="FillAndExpand"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="AzureNetMaui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AzureNetMaui"
+    xmlns:views="clr-namespace:AzureNetMaui.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent
+        Title="Customer List"
+        ContentTemplate="{DataTemplate views:CustomerListView}"
+        Route="CustomerList" />
+
+</Shell>
